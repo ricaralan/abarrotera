@@ -34,7 +34,7 @@ class ORM {
 		}
 		$query = "SELECT ".$columns." FROM ".self::$table." WHERE ".self::$nameId."='$id'";
 		self::$database->execute($query);
-		print json_encode(self::$database->execute($query));
+		return self::$database->execute($query);
 	}
 
 	public function getWhere($columns, $where) {
@@ -49,7 +49,7 @@ class ORM {
 			$columnsWhere .= ' = ?';
 		}
 		$query = "SELECT ".$columns." FROM ".self::$table." WHERE ".$columnsWhere;
-		print json_encode(self::$database->execute($query, null, $where));
+		return self::$database->execute($query, null, $where);
 	}
 
 	public function save($id = null) {
@@ -65,8 +65,6 @@ class ORM {
 			// UPDATE
 			$columns = join(" = ?, ", $columns);
 			$columns.= ' = ?';
-			//$this->
-			print $this->id_usuario;
 			$query = "UPDATE ".self::$table." SET $columns WHERE "
 					.self::$nameId."=".(is_string($id)?"\"$id\"":$id);
 		} else {
@@ -75,8 +73,7 @@ class ORM {
             $columns = join(", ", $columns);
             $query = "INSERT INTO ".self::$table." ($columns) VALUES ($params)";
 		}
-		//return self::$database->execute($query, null, $filtered);
-		print json_encode(self::$database->execute($query, null, $filtered));
+		return self::$database->execute($query, null, $filtered);
 	}
 
 	public function getValidColumns($columns) {
@@ -101,8 +98,7 @@ class ORM {
 			$query .= self::$nameId.'=?';
 			$id = array(id=>$id);
 		}
-		print $query;
-		print json_encode(self::$database->execute($query, null, $id));
+		return self::$database->execute($query, null, $id);
 	}
 
 }

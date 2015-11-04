@@ -5,22 +5,22 @@ class ParentModel {
 	public $orm;
 
 	public function getById($id, $columns = null) {
-		$this->orm->getById($id, $columns);
+		return $this->orm->getById($id, $columns);
 	}
 
 	public function getWhere($columns = null, $where) {
 		$where = $this->getValidArrayByColumnsORM($where);
-		$this->orm->getWhere($columns, $where);
+		return $this->orm->getWhere($columns, $where);
 	}
 
 	public function save($data, $where = null) {
 		$data = $this->getValidArrayByColumnsORM($data);
 		$this->setDataORM($data);
-		$this->orm->save($where);
+		return $this->orm->save($where);
 	}
 
 	public function delete($id) {
-		$this->orm->delete($id);
+		return $this->orm->delete($id);
 	}
 
 	private function setDataORM($data) {

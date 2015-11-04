@@ -9,7 +9,7 @@ class Database {
 
 	public function __construct() {
 		self::$provider = new MySQLProvider();
-		self::$provider->connect("localhost","root","RAOR940203","prueba");
+		self::$provider->connect("localhost","root","RAOR940203","abarrotera");
 	}
 
 	public function getConnection() {
