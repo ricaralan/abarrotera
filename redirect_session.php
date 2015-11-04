@@ -1,18 +1,30 @@
 <?php
 include_once 'constants.php';
+
 session_start();
 
-switch ($_SESSION["rol"]) {
-	case 'administrador':
-		header('location: '.BASE_URL.'views/admin');
-		break;
-	case 'vendedor':
-		header('location: '.BASE_URL.'views/vendedor');
-		break;
-	default:
-		if($_SERVER['REQUEST_URI'] !== '/') {
-			header('location: '.BASE_URL);
-		}
+$url = 'location: '.BASE_URL;
+
+$changeLocation = false;
+
+if(isset($_GET["destroy"])) {
+	session_destroy();
+	header($url);
+} else {
+	switch ($_SESSION["rol"]) {
+		case 'administrador':
+			$url .= 'views/admin';
+			break;
+		case 'vendedor':
+			$url .= 'views/vendedor';
+			break;
+	}
+	$changeLocation = $url !== 'location: '.BASE_URL;
+
+	if($_SERVER['REQUEST_URI'] !== '/' || $changeLocation) {
+		header($url);
+	}
 }
+
 
 ?>
