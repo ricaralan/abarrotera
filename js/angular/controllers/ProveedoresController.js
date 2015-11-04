@@ -5,7 +5,7 @@ app.controller("ProveedoresController", ["$scope", "$http","$routeParams", "$loc
 	$scope.getAllProveedores = function() {
 		$http.get(BASE_URL + "/database/controllers/ProveedorController.php?all")
 			.success(function(proveedores) {
-			$scope.proveedores = proveedores;
+			$scope.proveedores = (proveedores instanceof Array) ? proveedores : [];
 		});
 	};
 
@@ -52,6 +52,15 @@ app.controller("ProveedoresController", ["$scope", "$http","$routeParams", "$loc
 			$scope.optionProveedor = "Actualizar";
 		}
 	}
+
+	$scope.eliminarProveedor = function(id) {
+		$http.get(BASE_URL + "/database/controllers/ProveedorController.php?delete="+id)
+				.success(function(data) {
+				if(data.affected_rows === 1) {
+					$scope.getAllProveedores();
+				}
+		});
+	};
 
 	$scope.getDataProveedor();
 
