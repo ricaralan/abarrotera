@@ -21,6 +21,10 @@ class ORM {
 		self::$nameId = $nameId;
 	}
 
+	public function getAll() {
+		return self::$database->execute("SELECT * FROM ".self::$table)["objects"];
+	}
+
 	public function getById($id, $columns = null) {
 		if($columns) {
             $columns = $this->getValidColumns($columns);
@@ -33,7 +37,6 @@ class ORM {
 			$columns = "*";
 		}
 		$query = "SELECT ".$columns." FROM ".self::$table." WHERE ".self::$nameId."='$id'";
-		self::$database->execute($query);
 		return self::$database->execute($query);
 	}
 

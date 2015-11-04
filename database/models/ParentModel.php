@@ -4,6 +4,10 @@ class ParentModel {
 
 	public $orm;
 
+	public function getAll() {
+		return $this->orm->getAll();
+	}
+
 	public function getById($id, $columns = null) {
 		return $this->orm->getById($id, $columns);
 	}

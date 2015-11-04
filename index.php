@@ -9,6 +9,7 @@
 	<title>Abarrotera</title>
 	<script src="<?= BASE_URL?>js/angular/angular.min.js"></script>
 	<script src="<?= BASE_URL?>js/angular/modules/app.js"></script>
+	<script src="<?= BASE_URL?>js/angular/routes/angular-route.js"></script>
 	<script src="<?= BASE_URL?>js/angular/controllers/UserController.js"></script>
 	<script>
 		var BASE_URL = "<?= BASE_URL?>";

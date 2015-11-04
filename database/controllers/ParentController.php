@@ -4,6 +4,14 @@ class ParentController {
 
 	protected $model;
 
+	public function getAll() {
+		return json_encode($this->model->getAll());
+	}
+
+	public function getById($id, $columns = null) {
+		return json_encode($this->model->getById($id, $columns));
+	}
+
 	public function getWhere($columns = null, $where) {
 		return json_encode($this->model->getWhere($columns, $where));
 	}
